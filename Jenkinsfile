@@ -6,6 +6,7 @@ pipeline {
     }
 environment {
     PATH = "/opt/apache-maven-3.9.6/bin:$PATH"
+    SONAR_TOKEN = credentials('SONAR_TOKEN')
     
 }
    stages {
@@ -16,12 +17,12 @@ environment {
                  echo "----------- build complted ----------"
             }
         }
-}
-    stage("test"){
+        stage("test"){
             steps{
                 echo "----------- unit test started ----------"
                 sh 'mvn surefire-report:report'
                  echo "----------- unit test Complted ----------"
             }
         }
+   }
 }

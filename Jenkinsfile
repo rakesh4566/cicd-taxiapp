@@ -17,6 +17,7 @@ environment {
             }
         }
 }
+<<<<<<< HEAD:jenkinsfile
     stage("test"){
             steps{
                 echo "----------- unit test started ----------"
@@ -24,4 +25,6 @@ environment {
                  echo "----------- unit test Complted ----------"
             }
         }
+=======
+>>>>>>> 74d05e838cd601917decb3e4912a796b4d32b8ed:Jenkinsfile
 }

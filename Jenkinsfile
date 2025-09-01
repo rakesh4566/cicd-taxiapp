@@ -9,8 +9,7 @@ pipeline {
     }
 environment {
     PATH = "/opt/apache-maven-3.9.6/bin:$PATH"
-    SONAR_TOKEN = credentials('SONAR_TOKEN')
-    
+     (SONAR_TOKEN = credentials('SONAR_TOKEN'))   
 }
    stages {
         stage("build"){
@@ -27,21 +26,21 @@ environment {
                  echo "----------- unit test Complted ----------"
             }
         }
-    stage('SonarQube Analysis') {
+        stage('SonarQube Analysis') {
             steps {
                 script {
                     // Run SonarQube analysis
                     sh """
                     mvn sonar:sonar \
-                    -Dsonar.projectKey=github-taxibooking-app_sonarqube\
-                    -Dsonar.organization=github-taxibooking-app \
+                    -Dsonar.projectKey=taxi-booking01_taxi-booking01 \
+                    -Dsonar.organization=taxi-booking01 \
                     -Dsonar.host.url=https://sonarcloud.io \
                     -Dsonar.token=${SONAR_TOKEN}
                     """
                 }
             }
         }
-    stage("Jar Publish") {
+        stage("Jar Publish") {
         steps {
             script {
                     echo '<--------------- Jar Publish Started --------------->'
@@ -54,7 +53,7 @@ environment {
                               "target": "taxi-libs-release-local/{1}",
                               "flat": "false",
                               "props" : "${properties}",
-                              "exclusions": [ ".sha1", ".md5"]
+                              "exclusions": [ "*.sha1", "*.md5"]
                             }
                          ]
                      }"""
@@ -85,6 +84,5 @@ environment {
             }
         }
     }
-
-}  
+   }
 }

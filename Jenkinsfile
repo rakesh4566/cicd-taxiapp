@@ -1,4 +1,4 @@
-def registry = 'https://<yourJFrogURL>/'
+def registry = 'https://taxi03.jfrog.io/'
 pipeline {
     agent {
         node {
